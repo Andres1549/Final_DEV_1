@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from routers import *
 app = FastAPI(title="sigmotoa FC")
-
+@app.on_event("startup")
+def on_startup():
+    init_db()
 
 @app.get("/")
 async def root():
