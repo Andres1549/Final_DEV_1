@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+from routers import *
 app = FastAPI(title="sigmotoa FC")
 
 
@@ -11,3 +11,8 @@ async def root():
 @app.get("/hello/{name}")
 async def say_hello(name: str):
     return {"message": f"Bienvenido a sigmotoa FC {name}"}
+
+
+app.include_router(jugadores, prefix="/jugadores", tags=["Jugadores"])
+app.include_router(partidos, prefix="/partidos", tags=["Partidos"])
+app.include_router(estadisticas, prefix="/estadisticas", tags=["Estadisticas"])
