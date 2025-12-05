@@ -1,11 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException
-import fastapi
+from fastapi import FastAPI, Depends, HTTPException
 from sqlmodel import Session, select
 from typing import List
 from database import get_session
 from models import Jugador_partidoLink, Jugador, Partido
 
-app = fastapi()
+app = FastAPI()
 
 @app.get("/", response_model=List[Jugador_partidoLink])
 def listar_relaciones(session: Session = Depends(get_session)):

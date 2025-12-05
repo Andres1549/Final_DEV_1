@@ -8,7 +8,9 @@ import models
 import uvicorn
 from utils.positions import Position
 from utils.states import States
-
+from utils.dominante import Pie
+from database import SessionLocal
+from schemas import JugadorCreate, JugadorUpdate
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")

@@ -7,6 +7,8 @@ from typing import Optional
 from datetime import date
 from database import SessionLocal
 from models import Partido
+from utils.partido import Victoria
+from schemas import PartidoCreate, PartidoUpdate
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -27,7 +29,7 @@ def home(request: Request, db: Session = Depends(get_db)):
 
 @app.get("/partidos")
 def partidos(request: Request, db: Session = Depends(get_db)):
-    partidos_list = crud.listar_partidos(db, skip=0, limit=100, include_deleted=False)
+    partidos_list = listar_partidos(db, skip=0, limit=100, include_deleted=False)
     return templates.TemplateResponse("partidos.html", {"request": request, "partidos": partidos_list})
 
 @app.post("/partidos/", tags=["Partidos"])

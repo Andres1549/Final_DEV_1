@@ -8,6 +8,8 @@ import models
 import uvicorn
 from utils.positions import Position
 from utils.states import States
+from database import SessionLocal
+from schemas import EstadisticaCreate, EstadisticaUpdate
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
