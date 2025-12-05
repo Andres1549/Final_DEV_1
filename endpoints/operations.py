@@ -57,9 +57,6 @@ def restaurar_jugador_por_id(jugador_id: int, session: Session = Depends(get_db)
 def buscar_jugador(nombre: str = Query(..., min_length=1), session: Session = Depends(get_db)):
     return buscar_jugador_por_nombre(session, nombre)
 
-@app.get("/jugadores/filter/equipo/", tags=["Jugadores"])
-def filtrar_jugadores_por_equipo(equipo: str = Query(..., min_length=1), session: Session = Depends(get_db)):
-    return filtrar_jugadores_por_equipo(session, equipo)
 
 @app.get("/jugadores/{jugador_id}", tags=["Jugadores"])
 def obtener_jugador_por_id(jugador_id: int, session: Session = Depends(get_db)):
