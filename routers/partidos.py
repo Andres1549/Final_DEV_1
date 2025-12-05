@@ -10,7 +10,6 @@ from models import Partido
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 def get_db():
