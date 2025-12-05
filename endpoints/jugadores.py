@@ -25,6 +25,8 @@ def get_db():
 def home(request: Request, db: Session = Depends(get_db)):
     return templates.TemplateResponse("index.html", {"request": request})
 
+#Jugadores
+
 @app.get("/jugadores")
 def jugadores(request: Request, db: Session = Depends(get_db)):
     jugadores = get_jugadores(db)
@@ -38,7 +40,7 @@ def crear_nuevo_jugador(obj: JugadorCreate, session: Session = Depends(get_db)):
 def listar_todos_los_jugadores(
     skip: int = 0,
     limit: int = Query(10, le=100),
-    include_deleted: bool = Query(False, description="Incluir eliminados"),
+    include_deleted: bool = Query(False, description="Incluir jugadores eliminados eliminados "),
     session: Session = Depends(get_db)
 ):
     return listar_jugadores(session, skip=skip, limit=limit, include_deleted=include_deleted)
@@ -74,3 +76,5 @@ def eliminar_jugador_por_id(jugador_id: int, session: Session = Depends(get_db))
     if eliminar_jugador(session, jugador_id):
         return {"message": "Jugador eliminado"}
     raise HTTPException(status_code=404, detail="Jugador no encontrado")
+
+

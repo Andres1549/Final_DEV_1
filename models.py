@@ -24,8 +24,9 @@ class Estadistica_partido():
     id_partido: list["Partido"] = Relationship(back_populates="partido")
     tarjetas:int #no mayor a 2, es expulsion
     min_jugados:int
-#debemos hacer estadisticas generales con esta tabla 
-
+    goles:int
+    asistencias:int
+    faltas_cometidas:int
 
 class Partido():
     pass
